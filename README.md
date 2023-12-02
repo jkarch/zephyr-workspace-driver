@@ -1,9 +1,8 @@
-# Zephyr Example Application, modified to support multiple out of tree driver examples by Josh Karch
-# https://github.com/jkarch?tab=repositories
-# Feel free to modify / contribute to your likings, this is a breakout point for getting started with Zephyr.
-# This code served as a first cut opportunity to make a driver for the ST Micro iis3wdb vibration sensor, which does not yet exist in Zephyr.
-# The driver is loosely based on [https://github.com/muhammadadeelzahid/LIS3DSH-Drivers-Zephyr-RTOS/tree/main](https://oxeltech.de/en/how-to-write-a-driver-for-accelerometer-lis3dsh-in-zephyr/), where the structure was modified
-# to support the iis3wdb vibration sensor: https://www.st.com/en/mems-and-sensors/iis3dwb.html
+# Zephyr Example Application, modified to support multiple out of tree driver examples, particularly the iis3wdb vibration sensor by Josh Karch
+https://github.com/jkarch?tab=repositories  
+Feel free to modify / contribute to your likings, this is a breakout point for getting started with Zephyr.  
+This code served as a first cut opportunity to make a driver for the ST Micro iis3wdb vibration sensor, which does not yet exist in Zephyr.  
+The driver is loosely based on [https://github.com/muhammadadeelzahid/LIS3DSH-Drivers-Zephyr-RTOS/tree/main](https://oxeltech.de/en/how-to-write-a-driver-for-accelerometer-lis3dsh-in-zephyr/), where the structure was modified to support the iis3wdb vibration sensor: https://www.st.com/en/mems-and-sensors/iis3dwb.html  
 
 This repository contains a Zephyr example application. The main purpose of this
 repository is to serve as a reference on how to structure Zephyr-based
