@@ -1,8 +1,10 @@
-# nRF Connect SDK example application
+# Zephyr Example Application, modified to support multiple out of tree driver examples by Josh Karch
+# https://github.com/jkarch?tab=repositories
+# Feel free to modify / contribute to your likings, this is a breakout point for getting started with Zephyr.
 
-This repository contains an nRF Connect SDK example application. The main
-purpose of this repository is to serve as a reference on how to structure nRF Connect
-SDK based applications. Some of the features demonstrated in this example are:
+This repository contains a Zephyr example application. The main purpose of this
+repository is to serve as a reference on how to structure Zephyr-based
+applications. Some of the features demonstrated in this example are:
 
 - Basic [Zephyr application][app_dev] skeleton
 - [Zephyr workspace applications][workspace_app]
@@ -15,12 +17,12 @@ SDK based applications. Some of the features demonstrated in this example are:
 - Example CI configuration (using Github Actions)
 - Custom [west extension][west_ext]
 
-This repository is versioned together with the [nRF Connect SDK main tree][sdk-nrf]. This
-means that every time that nRF Connect SDK is tagged, this repository is tagged as well
+This repository is versioned together with the [Zephyr main tree][zephyr]. This
+means that every time that Zephyr is tagged, this repository is tagged as well
 with the same version number, and the [manifest](west.yml) entry for `zephyr`
-will point to the corresponding nRF Connect SDK tag. For example, the `ncs-example-application`
-v2.5.0 will point to nRF Connect SDK v2.5.0. Note that the `main` branch always
-points to the development branch of nRF Connect SDK, also `main`.
+will point to the corresponding Zephyr tag. For example, the `example-application`
+v2.6.0 will point to Zephyr v2.6.0. Note that the `main` branch always
+points to the development branch of Zephyr, also `main`.
 
 [app_dev]: https://docs.zephyrproject.org/latest/develop/application/index.html
 [workspace_app]: https://docs.zephyrproject.org/latest/develop/application/index.html#zephyr-workspace-app
@@ -29,51 +31,44 @@ points to the development branch of nRF Connect SDK, also `main`.
 [board_porting]: https://docs.zephyrproject.org/latest/guides/porting/board_porting.html
 [bindings]: https://docs.zephyrproject.org/latest/guides/dts/bindings.html
 [drivers]: https://docs.zephyrproject.org/latest/reference/drivers/index.html
-[sdk-nrf]: https://github.com/nrfconnect/sdk-nrf
+[zephyr]: https://github.com/zephyrproject-rtos/zephyr
 [west_ext]: https://docs.zephyrproject.org/latest/develop/west/extensions.html
 
-## Getting started
+## Getting Started
 
-Before getting started, make sure you have a proper nRF Connect SDK development environment.
-Follow the official
-[Installation guide](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/getting_started.html).
+Before getting started, make sure you have a proper Zephyr development
+environment. Follow the official
+[Zephyr Getting Started Guide](https://docs.zephyrproject.org/latest/getting_started/index.html).
+This is adapted from: https://github.com/nrfconnect/ncs-example-application/tree/main
 
 ### Initialization
 
 The first step is to initialize the workspace folder (``my-workspace``) where
-the ``example-application`` and all nRF Connect SDK modules will be cloned. Run the following
+the ``example-application`` and all Zephyr modules will be cloned. Run the following
 command:
 
 ```shell
-# initialize my-workspace for the ncs-example-application (main branch)
-west init -m https://github.com/nrfconnect/ncs-example-application --mr main my-workspace
-# update nRF Connect SDK modules
-cd my-workspace
+# initialize my-workspace for the example-application (main branch)
+west init -m https://github.com/jkarch/zephyr-workspace-driver --mr main my-exampledriver-workspace
+# update Zephyr modules
+cd my-exampledriver-workspace
 west update
 ```
 
 ### Building and running
 
-To build the application, run the following command:
+To build the application for the nrf52832 run the following command:
 
 ```shell
-west build -b $BOARD app
+west build -b nrf52dk_nrf52832 app -- -DDTC_OVERLAY_FILE=$(PWD)/boards/nrf52dk_nrf52832.overlay 
 ```
 
-where `$BOARD` is the target board.
+Feel free to modify / add more boards
 
-You can use the `custom_plank` board found in this repository. Note that you can use
-Zephyr and nRF Connect SDK sample boards if an appropriate overlay is provided (see `app/boards`).
-
-A sample debug configuration is also provided. To apply it, run the following
-command:
-
-```shell
-west build -b $BOARD app -- -DOVERLAY_CONFIG=debug.conf
-```
 
 Once you have built the application, run the following command to flash it:
 
 ```shell
 west flash
 ```
+
