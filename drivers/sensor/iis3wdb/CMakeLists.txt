@@ -1,7 +1,5 @@
 # Copyright (c) 2021 Nordic Semiconductor ASA
 # SPDX-License-Identifier: Apache-2.0
 
-if SENSOR
-rsource "examplesensor/Kconfig"
-rsource "iis3wdb/Kconfig"
-endif # SENSOR
+zephyr_library()
+zephyr_library_sources(iis3wdb.c)
