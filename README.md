@@ -51,7 +51,7 @@ command:
 # initialize my-workspace for the example-application (main branch)
 west init -m https://github.com/jkarch/zephyr-workspace-driver --mr main my-exampledriver-workspace
 # update Zephyr modules
-cd my-exampledriver-workspace
+cd my-exampledriver-workspace/zephyr-workspace-driver
 west update
 ```
 
